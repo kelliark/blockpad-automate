@@ -11,7 +11,7 @@ Blockpad Testnet automate perform task script.
 ## Multi-Account Support
 The script now supports running multiple accounts simultaneously. To use this feature:
 
-1. Create a file named `tokens.txt` in the same directory as the script
+1. Open a file named `tokens.txt` in the same directory as the script
 2. Add one bearer token per line in the file
 3. Each token will run in its own thread
 
