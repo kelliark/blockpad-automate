@@ -22,6 +22,9 @@ eyJhbGciYYYYYY.YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 eyJhbGciZZZZZZ.ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 ```
 
+## AutoFetch Token from the Autoref
+[Auto Token Fetch](https://github.com/kelliark/blockpad-automate/discussions/1)
+
 ## Proxy Support
 The script supports both HTTP and SOCKS5 proxies with authentication. To use proxies:
 
