@@ -1,5 +1,6 @@
 # Blockpad Automate
 Blockpad Testnet automate perform task script.
+- Another script, [Blockpad Autoref](https://github.com/im-hanzou/blockpad-autoref)
 ## Tools and components required
 1. Blockpad Account, Register here: [https://testnet.blockpad.fun/register](https://testnet.blockpad.fun/register?ref=TZSXOS)
 2. Blockpad Account Bearer Token
