@@ -10,7 +10,7 @@ init(autoreset=True)
 
 class BlockpadAutomation:
     def __init__(self, bearer_token):
-        self.base_url = "https://api2.blockpad.fun/api"
+        self.base_url = "https://api3.blockpad.fun/api"
         self.headers = {
             'Accept': 'application/json, text/plain, */*',
             'Authorization': f'Bearer {bearer_token}',
