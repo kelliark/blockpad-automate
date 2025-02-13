@@ -227,23 +227,36 @@ def main():
         try:
             user = bot.get_user_info()
             if user:
-                last_claim = datetime.strptime(user['lastFaucetClaim'], "%Y-%m-%dT%H:%M:%S.%fZ")
-                last_claim = last_claim.replace(tzinfo=timezone.utc)
+                last_claim = user.get('lastFaucetClaim')
                 
-                next_claim = last_claim + timedelta(hours=24)
-                now = datetime.now(timezone.utc)
-
-                if now >= next_claim:
+                if last_claim is None:
+                    bot.log_with_time("No previous faucet claim found. Attempting to claim...", Fore.YELLOW)
                     retry_count = 0
-                    while retry_count < 6:
+                    while retry_count < 5:
                         if bot.claim_faucet():
                             break
                         retry_count += 1
-                        if retry_count < 6:
-                            bot.log_with_time(f"Retrying faucet claim in 1 minutes... (Attempt {retry_count}/6)", Fore.YELLOW)
+                        if retry_count < 5:
+                            bot.log_with_time(f"Retrying faucet claim in 1 minute... (Attempt {retry_count}/6)", Fore.YELLOW)
                             time.sleep(60)
+                else:
+                    last_claim_date = datetime.strptime(last_claim, "%Y-%m-%dT%H:%M:%S.%fZ")
+                    last_claim_date = last_claim_date.replace(tzinfo=timezone.utc)
+                    
+                    next_claim = last_claim_date + timedelta(hours=24)
+                    now = datetime.now(timezone.utc)
 
-                    bot.display_user_stats()
+                    if now >= next_claim:
+                        retry_count = 0
+                        while retry_count < 5:
+                            if bot.claim_faucet():
+                                break
+                            retry_count += 1
+                            if retry_count < 5:
+                                bot.log_with_time(f"Retrying faucet claim in 1 minute... (Attempt {retry_count}/6)", Fore.YELLOW)
+                                time.sleep(60)
+
+                bot.display_user_stats()
 
             bot.perform_random_task()
 
